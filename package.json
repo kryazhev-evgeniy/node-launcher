@@ -1,9 +1,11 @@
 {
   "name": "NodeLauncher",
   "version": "1.0.0",
-  "main": "src/js/app.js",
+  "main": "src/app.js",
   "license": "MIT",
   "dependencies": {
+    "custom-electron-titlebar": "^3.2.6",
+    "electron-reload": "^1.5.0",
     "minecraft-launcher-core": "^3.16.1"
   },
   "devDependencies": {
