@@ -2,13 +2,12 @@ const path = require('path')
 const {Client, Authenticator} = require('minecraft-launcher-core')
 
 const rootPath = path.join(__dirname,"../minecraft")
-const installerPath = path.join(__dirname,"./Assets/forge-1.16.4-35.1.37-installer.jar")
 const client = new Client()
 
 let options = {
     authorization: Authenticator.getAuth("username"),
     root: rootPath,
-    installer: installerPath,
+    forge: path.join(__dirname,"./forge-1.16.4-35.1.37-installer.jar"),
     version: {
         number: "1.16.4",
         type: "release"
@@ -20,6 +19,7 @@ let options = {
 }
 
 module.exports = {
+    Authenticator,
     options,
     client
 }

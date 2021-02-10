@@ -23,8 +23,8 @@ function setErr(data) {
 btnPlay.addEventListener('click', (e) => {
     if (inputUsername.value != "") {
         btnPlay.toggleAttribute('disabled')
-        progress.classList.remove('is-hidden')
-        ipc.send("play","Hello")
+        progress.classList.toggle('is-hidden')
+        ipc.send("play", inputUsername.value)
     } else {
         setErr("Введите ваше имя")
     }
@@ -32,4 +32,15 @@ btnPlay.addEventListener('click', (e) => {
 
 ipc.on('err', (event, data) => {
     setErr(data)
+})
+
+ipc.on('progress-game', (event,data) => {
+    progress.setAttribute('min',0);
+    progress.setAttribute('value',data.task);
+    progress.setAttribute('max',data.total);
+})
+
+ipc.on("close-game", (event,data) => {
+    btnPlay.toggleAttribute('disabled')
+    progress.classList.toggle('is-hidden')
 })
