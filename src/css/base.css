@@ -1,16 +1,6 @@
-html {
-  min-height: 100vh;
-  overflow-y: hidden;
-  background-position: center;
-  background-size: cover;
-  background-image: url('https://static.wallpapers-anime.com/upload/20170507/246/o/v/O/ovOEEF.png');
+html{
+    overflow-y: hidden;
 }
-.wrapper{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  background-color: white;
+html::-webkit-scrollbar{
+    width: 0;
 }

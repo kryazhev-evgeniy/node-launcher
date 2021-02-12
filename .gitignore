@@ -1,3 +1,4 @@
 node_modules
 minecraft
 yarn.lock
+dist

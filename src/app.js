@@ -19,8 +19,6 @@ function createWindow () {
 
   mainWindow.setMenu(null);
   mainWindow.loadFile(path.join(__dirname,"./views/index.html"))
-  //mainWindow.webContents.openDevTools();
-
 }
 
 app.whenReady().then(() => {
@@ -40,33 +38,23 @@ app.on('window-all-closed', function () {
 })
 
 ipcMain.on("play", (event, arg) => {
-  
-  let options = {
-    authorization: launcher.Authenticator.getAuth(arg),
-    root: path.join(__dirname, "../minecraft"),
-    forge: path.join(__dirname, "./forge-1.16.4-35.1.37-installer.jar"),
-    version: {
-        number: "1.16.4",
-        type: "release"
-    },
-    memory: {
-        max: "6G",
-        min: "4G"
-    }
-  }
 
-  launcher.options.authorization = launcher.Authenticator.getAuth(arg)
-  launcher.client.launch(launcher.options)
-  launcher.client.on('debug', (e) => console.log(e));
-  launcher.client.on('data', (e) => console.log(e));
+  const client = launcher.start(arg);
 
-  launcher.client.on('progress', (e) => {
-    console.log(e)
-    event.sender.send("progress-game", e);
+  client.on("data", e => {
+    event.sender.send("data",e)
   })
 
-  launcher.client.on('close', (e) => {
-    event.sender.send('close-game');
+  client.on("debug", e => {
+    event.sender.send("debug",e)
+  })
+
+  client.on("progress", e => {
+    event.sender.send("progress",e)
+  })
+  
+  client.on("progress-forge", e => {
+    event.sender.send("progress-download",e)
   })
 
 })

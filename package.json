@@ -10,9 +10,11 @@
   },
   "devDependencies": {
     "electron": "^11.2.3",
+    "electron-builder": "^22.9.1",
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "dev": "electron ."
+    "dev": "electron .",
+    "dist": "electron-builder"
   }
 }
